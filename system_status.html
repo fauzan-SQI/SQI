@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Sistem - Science-Qur'an Integration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(to right, #001f3f, #0a3d62);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+        }
+        
+        .status-overview {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .status-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .status-card.operational {
+            border-left: 5px solid #27ae60;
+        }
+        
+        .status-card.warning {
+            border-left: 5px solid #f39c12;
+        }
+        
+        .status-card.error {
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .status-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .operational .status-icon {
+            color: #27ae60;
+        }
+        
+        .warning .status-icon {
+            color: #f39c12;
+        }
+        
+        .error .status-icon {
+            color: #e74c3c;
+        }
+        
+        .status-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .checks-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        .checks-header {
+            background: #001f3f;
+            color: white;
+            padding: 15px 20px;
+            font-weight: 500;
+        }
+        
+        .checks-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .check-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .check-item:last-child {
+            border-bottom: none;
+        }
+        
+        .check-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .check-status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .refresh-btn {
+            background: linear-gradient(to right, #001f3f, #0a3d62);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .refresh-btn:hover {
+            background: linear-gradient(to right, #0a3d62, #145a82);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .timestamp {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .status-overview {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-server"></i> Status Sistem SQI</h1>
+            <p>Monitoring kesehatan aplikasi Science-Qur'an Integration</p>
+        </div>
+        
+        <div class="status-overview" id="statusOverview">
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i> Memuat status sistem...
+            </div>
+        </div>
+        
+        <button class="refresh-btn" onclick="refreshStatus()">
+            <i class="fas fa-sync-alt"></i> Perbarui Status
+        </button>
+        
+        <div class="checks-container">
+            <div class="checks-header">
+                <i class="fas fa-clipboard-list"></i> Detail Pemeriksaan
+            </div>
+            <div class="checks-list" id="checksList">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Memuat detail pemeriksaan...
+                </div>
+            </div>
+        </div>
+        
+        <div class="timestamp" id="timestamp">
+            <!-- Timestamp will be filled by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk mengambil status dari server
+        async function fetchStatus() {
+            try {
+                const response = await fetch('server/status_check.php');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching status:', error);
+                return null;
+            }
+        }
+        
+        // Fungsi untuk merender status overview
+        function renderStatusOverview(statusData) {
+            if (!statusData) {
+                document.getElementById('statusOverview').innerHTML = 
+                    `<div class="status-card error">
+                        <div class="status-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div class="status-value">GAGAL</div>
+                        <div>Tidak bisa mengambil data status</div>
+                    </div>`;
+                return;
+            }
+            
+            const { server_status, summary } = statusData;
+            
+            document.getElementById('statusOverview').innerHTML = `
+                <div class="status-card ${server_status}">
+                    <div class="status-icon"><i class="fas fa-heartbeat"></i></div>
+                    <div class="status-value">${server_status.toUpperCase()}</div>
+                    <div>Status Server</div>
+                </div>
+                
+                <div class="status-card success">
+                    <div class="status-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="status-value">${summary.success_count}</div>
+                    <div>Periksaan Berhasil</div>
+                </div>
+                
+                <div class="status-card warning">
+                    <div class="status-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="status-value">${summary.warning_count}</div>
+                    <div>Peringatan</div>
+                </div>
+                
+                <div class="status-card error">
+                    <div class="status-icon"><i class="fas fa-times-circle"></i></div>
+                    <div class="status-value">${summary.error_count}</div>
+                    <div>Kesalahan</div>
+                </div>
+            `;
+            
+            // Update timestamp
+            document.getElementById('timestamp').textContent = `Terakhir diperbarui: ${statusData.timestamp}`;
+        }
+        
+        // Fungsi untuk merender daftar pemeriksaan
+        function renderChecksList(statusData) {
+            if (!statusData) {
+                document.getElementById('checksList').innerHTML = 
+                    `<div class="check-item">
+                        <div class="check-info">
+                            <i class="fas fa-exclamation-triangle" style="color:#e74c3c;"></i>
+                            <span>Tidak bisa mengambil data pemeriksaan</span>
+                        </div>
+                    </div>`;
+                return;
+            }
+            
+            const checksList = document.getElementById('checksList');
+            checksList.innerHTML = '';
+            
+            statusData.checks.forEach(check => {
+                const statusClass = `status-${check.status}`;
+                const icon = check.status === 'success' ? 'check-circle' : 
+                            check.status === 'warning' ? 'exclamation-triangle' : 'times-circle';
+                const iconColor = check.status === 'success' ? '#27ae60' : 
+                                check.status === 'warning' ? '#f39c12' : '#e74c3c';
+                
+                const checkItem = document.createElement('div');
+                checkItem.className = 'check-item';
+                checkItem.innerHTML = `
+                    <div class="check-info">
+                        <i class="fas fa-${icon}" style="color:${iconColor};"></i>
+                        <div>
+                            <div><strong>${check.name}</strong></div>
+                            <div style="font-size:0.9em; color:#666;">${check.message}</div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="check-status ${statusClass}">${check.status.toUpperCase()}</span>
+                        <div style="font-size:0.8em; color:#888; margin-top:5px;">${check.timestamp}</div>
+                    </div>
+                `;
+                
+                checksList.appendChild(checkItem);
+            });
+        }
+        
+        // Fungsi untuk memperbarui status
+        async function refreshStatus() {
+            // Tampilkan loading
+            document.getElementById('statusOverview').innerHTML = 
+                `<div class="loading"><i class="fas fa-spinner fa-spin"></i> Memperbarui status...</div>`;
+            document.getElementById('checksList').innerHTML = 
+                `<div class="loading"><i class="fas fa-spinner fa-spin"></i> Memperbarui detail...</div>`;
+            
+            // Ambil data baru
+            const statusData = await fetchStatus();
+            
+            // Render ulang tampilan
+            renderStatusOverview(statusData);
+            renderChecksList(statusData);
+        }
+        
+        // Muat status saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', async () => {
+            const statusData = await fetchStatus();
+            renderStatusOverview(statusData);
+            renderChecksList(statusData);
+        });
+    </script>
+</body>
+</html>

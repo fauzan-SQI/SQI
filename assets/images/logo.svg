@@ -1,0 +1,9 @@
+<!-- Placeholder SVG for Islamic-themed icon -->
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#001f3f"/>
+  <circle cx="100" cy="100" r="80" fill="#f1c40f" opacity="0.2"/>
+  <path d="M70,90 Q100,50 130,90 T190,90" stroke="#f1c40f" stroke-width="5" fill="none"/>
+  <path d="M70,110 Q100,150 130,110 T190,110" stroke="#f1c40f" stroke-width="5" fill="none"/>
+  <circle cx="100" cy="100" r="20" fill="none" stroke="#f1c40f" stroke-width="3"/>
+  <text x="100" y="135" text-anchor="middle" fill="white" font-family="Arial" font-size="14">Science-Qur'an</text>
+</svg>

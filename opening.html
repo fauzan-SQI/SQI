@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opening - Science-Qur'an Integration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .auth-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-auth {
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-login {
+            background: transparent;
+            color: #001f3f;
+            border: 2px solid #001f3f;
+        }
+        
+        .btn-register {
+            background: linear-gradient(to right, #001f3f, #0a3d62);
+            color: white;
+            border: 2px solid #001f3f;
+        }
+        
+        .daily-fact-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #f1c40f;
+        }
+        
+        .daily-fact-section h3 {
+            color: #001f3f;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .daily-fact-content {
+            margin-top: 10px;
+        }
+        
+        .daily-fact-text {
+            font-style: italic;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .daily-quran-ref {
+            color: #f1c40f;
+            font-weight: 500;
+        }
+        
+        .loading-fact {
+            color: #888;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-buttons">
+        <a href="auth/login.php" class="btn-auth btn-login">
+            <i class="fas fa-sign-in-alt"></i> Login
+        </a>
+        <a href="auth/register.php" class="btn-auth btn-register">
+            <i class="fas fa-user-plus"></i> Register
+        </a>
+    </div>
+
+    <div class="opening-container">
+        <div class="header">
+            <h1><i class="fas fa-book-quran"></i> Science-Qur'an Integration</h1>
+            <p>Menghubungkan Pengetahuan Sains Modern dengan Ayat-ayat Al-Qur'an</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro-box">
+                <i class="fas fa-lightbulb fa-3x"></i>
+                <h2>Temukan Kebenaran Ilmiah dalam Al-Qur'an</h2>
+                <p>Aplikasi ini membantu Anda memahami bagaimana konsep ilmiah yang ditemukan manusia sudah dijelaskan dalam wahyu Al-Qur'an.</p>
+                
+                <div class="feature-highlights">
+                    <div class="feature">
+                        <i class="fas fa-microscope"></i>
+                        <h3>Sains Modern</h3>
+                        <p>Pelajari konsep ilmiah terkini</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-book"></i>
+                        <h3>Ayat Al-Qur'an</h3>
+                        <p>Temukan ayat yang relevan</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-video"></i>
+                        <h3>Video Edukasi</h3>
+                        <p>Penjelasan visual yang menarik</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="daily-fact-section">
+                <h3><i class="fas fa-star"></i> Fakta Sains Harian</h3>
+                <div class="daily-fact-content">
+                    <p class="daily-fact-text" id="daily-fact-text">
+                        <span class="loading-fact">Memuat fakta sains harian...</span>
+                    </p>
+                    <p class="daily-quran-ref" id="daily-quran-ref"></p>
+                </div>
+            </div>
+            
+            <button class="btn-start" onclick="startExploration()">
+                <i class="fas fa-compass"></i> Mulai Eksplorasi
+            </button>
+        </div>
+        
+        <footer>
+            <p>Tim MA Unggul Sabira &copy; 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // Ambil fakta sains harian dari API
+        async function loadDailyFact() {
+            try {
+                const response = await fetch('server/api/daily_fact.php');
+                const fact = await response.json();
+                
+                document.getElementById('daily-fact-text').textContent = fact.fact_text;
+                if (fact.quran_reference) {
+                    document.getElementById('daily-quran-ref').textContent = fact.quran_reference;
+                } else {
+                    document.getElementById('daily-quran-ref').textContent = '';
+                }
+            } catch (error) {
+                document.getElementById('daily-fact-text').textContent = 
+                    'Fakta sains harian tidak dapat dimuat saat ini. Aplikasi Science-Qur\'an Integration membantu Anda memahami hubungan antara sains modern dan ayat-ayat Al-Qur\'an.';
+                document.getElementById('daily-quran-ref').textContent = 
+                    'QS. An-Nahl: 10 - Dia-lah yang menurunkan air dari langit, sebagian untuk minum dan sebagian (lagi) untuk (menumbuhkan) tumbuh-tumbuhan yang kamu ternakkan.';
+            }
+        }
+        
+        // Panggil fungsi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', loadDailyFact);
+        
+        function startExploration() {
+            window.location.href = 'question.html';
+        }
+    </script>
+</body>
+</html>

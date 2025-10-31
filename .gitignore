@@ -1,0 +1,116 @@
+# .gitignore - File untuk mengecualikan file sensitif dari Git
+
+# File konfigurasi sensitif
+config/environment.php
+server/config.php
+config/global_constants.php
+.env
+*.env
+
+# File log
+logs/
+*.log
+error_log
+access_log
+
+# File cache
+cache/
+tmp/
+temp/
+
+# File upload
+uploads/
+files/
+
+# File database
+*.sql
+database/*.sql
+
+# File backup
+backup/
+*.bak
+*.backup
+
+# File sistem
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# File IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# File kompilasi
+*.min.js
+*.min.css
+
+# File sementara
+*.tmp
+*.temp
+
+# File debug
+debug.log
+xdebug.log
+
+# File API key (jika ada)
+api_keys.txt
+*.key
+keys/
+
+# File kredensial
+credentials.json
+*.creds
+
+# File sesi PHP
+sessions/
+
+# File kompresi
+*.zip
+*.tar.gz
+*.rar
+
+# File dokumentasi hasil
+*.pdf
+*.doc
+*.docx
+
+# File gambar hasil
+*.jpg
+*.jpeg
+*.png
+*.gif
+
+# File audio/video hasil
+*.mp3
+*.mp4
+*.avi
+*.mov
+
+# File lain yang tidak perlu di-commit
+README_TEMP.md
+*.old
+*.bak
+
+# File konfigurasi tambahan
+composer.lock
+vendor/
+
+# File dokumentasi tambahan
+docs/
+*.md
+
+# File PWA
+manifest.json
+browserconfig.xml
+assets/images/icon-*.png
+assets/images/tile*.png
+assets/images/screenshot-*.png
+
+# File metadata
+humans.txt
+robots.txt

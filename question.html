@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertanyaan - Science-Qur'an Integration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="question-container">
+        <div class="header">
+            <h1><i class="fas fa-book-quran"></i> Science-Qur'an Integration</h1>
+        </div>
+        
+        <div class="content">
+            <div class="question-box">
+                <h2>Ajukan Pertanyaanmu</h2>
+                <p>Tentang hubungan sains dan ayat-ayat Al-Qur'an</p>
+                
+                <form id="question-form" onsubmit="submitQuestion(event)">
+                    <div class="input-group">
+                        <textarea id="user-question" placeholder="Contoh: Apa yang dikatakan Al-Qur'an tentang penciptaan alam semesta?" rows="4"></textarea>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Kirim Pertanyaan
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="suggested-questions">
+                    <h3>Pertanyaan Terpopuler:</h3>
+                    <div class="question-tags">
+                        <span class="tag" onclick="fillQuestion('Apa kata Al-Qur\'an tentang penciptaan manusia?')">Penciptaan Manusia</span>
+                        <span class="tag" onclick="fillQuestion('Bagaimana Al-Qur\'an menjelaskan tentang sistem tata surya?')">Tata Surya</span>
+                        <span class="tag" onclick="fillQuestion('Apa yang dikatakan Al-Qur\'an tentang air dan kehidupan?')">Air & Kehidupan</span>
+                        <span class="tag" onclick="fillQuestion('Bagaimana Al-Qur\'an menjelaskan tentang fase embrio manusia?')">Fase Embrio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Tim MA Unggul Sabira &copy; 2025</p>
+        </footer>
+    </div>
+
+    <script src="assets/js/question.js"></script>
+</body>
+</html>

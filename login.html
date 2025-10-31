@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Science-Qur'an Integration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .welcome-section {
+            flex: 1;
+            background: linear-gradient(to bottom, #001f3f, #0a3d62);
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .welcome-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .welcome-section h2 i {
+            color: #f1c40f;
+        }
+        
+        .welcome-section p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .credentials {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .credential-item {
+            margin: 10px 0;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        
+        .login-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .login-section h2 {
+            color: #001f3f;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .role-selector {
+            display: flex;
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .role-btn {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .role-btn.active {
+            background: linear-gradient(to right, #001f3f, #0a3d62);
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #001f3f;
+            box-shadow: 0 0 0 2px rgba(0, 31, 63, 0.1);
+        }
+        
+        .btn-login {
+            width: 100%;
+            background: linear-gradient(to right, #001f3f, #0a3d62);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-login:hover {
+            background: linear-gradient(to right, #0a3d62, #145a82);
+            transform: translateY(-2px);
+        }
+        
+        .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .links a {
+            color: #001f3f;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 0 10px;
+        }
+        
+        .links a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(to right, #001f3f, #0a3d62);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+            
+            .welcome-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="opening.html" class="back-btn"><i class="fas fa-arrow-left"></i> Kembali</a>
+    
+    <div class="login-container">
+        <div class="welcome-section">
+            <h2><i class="fas fa-book-quran"></i> Science-Qur'an Integration</h2>
+            <p>Selamat datang di aplikasi integrasi sains dan Al-Qur'an.</p>
+            <p>Aplikasi ini membantu Anda memahami hubungan antara pengetahuan sains modern dengan ayat-ayat Al-Qur'an.</p>
+            
+            <div class="credentials">
+                <h3><i class="fas fa-key"></i> Kredensial Default:</h3>
+                <div class="credential-item">
+                    <strong>Admin:</strong> admin / admin123
+                </div>
+                <div class="credential-item">
+                    <strong>User Demo:</strong> demo / demo123
+                </div>
+            </div>
+        </div>
+        
+        <div class="login-section">
+            <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+            
+            <div class="role-selector">
+                <button class="role-btn active" onclick="switchRole('user')">Pengguna</button>
+                <button class="role-btn" onclick="switchRole('admin')">Admin</button>
+            </div>
+            
+            <form id="loginForm" method="post" action="auth/login.php">
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user"></i> Username atau Email</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <button type="submit" class="btn-login">Login <i class="fas fa-sign-in-alt"></i></button>
+            </form>
+            
+            <div class="links">
+                <a href="auth/register.php">Daftar Akun</a>
+                <a href="auth/forgot_password.php">Lupa Password</a>
+                <a href="admin/login.php">Login Admin</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchRole(role) {
+            const userBtn = document.querySelector('.role-btn:nth-child(1)');
+            const adminBtn = document.querySelector('.role-btn:nth-child(2)');
+            
+            if (role === 'user') {
+                userBtn.classList.add('active');
+                adminBtn.classList.remove('active');
+                document.getElementById('loginForm').action = 'auth/login.php';
+            } else if (role === 'admin') {
+                adminBtn.classList.add('active');
+                userBtn.classList.remove('active');
+                document.getElementById('loginForm').action = 'admin/login.php';
+            }
+        }
+        
+        // Default to user role
+        switchRole('user');
+    </script>
+</body>
+</html>

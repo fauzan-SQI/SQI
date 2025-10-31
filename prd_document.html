@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Requirements Document - Science-Qur'an Integration</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #001f3f;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #001f3f;
+            margin: 0;
+            font-size: 24px;
+        }
+        .logo {
+            color: #f1c40f;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .team-info {
+            font-size: 14px;
+            color: #555;
+            margin-top: 20px;
+        }
+        h2 {
+            color: #001f3f;
+            border-bottom: 2px solid #f1c40f;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #001f3f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f1c40f;
+            color: #001f3f;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #777;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🕌</div>
+            <h1><strong>Product Requirements Document (PRD)</strong></h1>
+            <h2>Science-Qur'an Integration</h2>
+            <div class="team-info">
+                <p><strong>Developer:</strong> Tim MA Unggul Sabira</p>
+                <p><strong>Version:</strong> 1.0 | <strong>Date:</strong> Oktober 2025</p>
+            </div>
+        </div>
+
+        <h2>1. 🧭 <strong>Overview</strong></h2>
+        <p><strong>Science-Qur'an Integration</strong> adalah website interaktif yang menghubungkan <strong>pengetahuan sains modern</strong> dengan <strong>ayat-ayat Al-Qur'an</strong>. Aplikasi ini membantu pengguna memahami bagaimana konsep ilmiah yang ditemukan manusia sudah dijelaskan dalam wahyu Al-Qur'an. Website ini bersifat <strong>edukatif, inspiratif, dan interaktif</strong> melalui sistem <strong>pertanyaan–jawaban otomatis</strong> yang disertai <strong>referensi ayat dan video YouTube</strong>.</p>
+
+        <hr>
+
+        <h2>2. 🎯 <strong>Objectives (Tujuan Aplikasi)</strong></h2>
+        <ol>
+            <li>Memberikan wadah pembelajaran sains dari perspektif Al-Qur'an.</li>
+            <li>Membantu siswa dan masyarakat mengenal ayat-ayat yang berkaitan dengan fenomena ilmiah.</li>
+            <li>Menggunakan teknologi modern (web) untuk pembelajaran agama dan sains secara menarik.</li>
+            <li>Mendorong eksplorasi ilmiah yang berdasar pada nilai spiritual.</li>
+        </ol>
+
+        <hr>
+
+        <h2>3. 👥 <strong>Target Users</strong></h2>
+        <table>
+            <tr>
+                <th>Jenis Pengguna</th>
+                <th>Kebutuhan Utama</th>
+            </tr>
+            <tr>
+                <td>Siswa dan Pelajar</td>
+                <td>Mencari penjelasan sains berdasarkan Al-Qur'an</td>
+            </tr>
+            <tr>
+                <td>Guru</td>
+                <td>Media bantu pembelajaran interaktif</td>
+            </tr>
+            <tr>
+                <td>Masyarakat Umum</td>
+                <td>Memahami ayat-ayat ilmiah Al-Qur'an</td>
+            </tr>
+            <tr>
+                <td>Peneliti Muslim</td>
+                <td>Referensi hubungan wahyu dan ilmu modern</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h2>4. 🧩 <strong>Core Features (Fitur Utama)</strong></h2>
+        <table>
+            <tr>
+                <th>No</th>
+                <th>Fitur</th>
+                <th>Deskripsi</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><strong>Animasi Pembuka (Splash Screen)</strong></td>
+                <td>Tampilan awal berisi animasi islami dan teks <em>"Bismillahirrahmanirrahim"</em> sebelum masuk ke halaman utama.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><strong>Opening Page (Halaman Awal)</strong></td>
+                <td>Tampilan awal responsif dengan tombol "Mulai Eksplorasi".</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><strong>Form Pertanyaan</strong></td>
+                <td>Pengguna dapat mengetik pertanyaan terkait sains dan Al-Qur'an.</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><strong>Lembar Jawaban</strong></td>
+                <td>Menampilkan jawaban ilmiah dan ayat terkait dari database.</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><strong>Video Tutorial / Link YouTube</strong></td>
+                <td>Tersedia tautan atau video yang menjelaskan topik pertanyaan.</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><strong>Navigasi Otomatis Antar Halaman</strong></td>
+                <td>Setelah animasi selesai → ke halaman utama → ke halaman pertanyaan → ke lembar jawaban.</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><strong>Database Jawaban</strong></td>
+                <td>Basis data berisi kumpulan pertanyaan, jawaban ilmiah, ayat, dan link video.</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h2>5. ⚙️ <strong>Technology Stack</strong></h2>
+        <table>
+            <tr>
+                <th>Komponen</th>
+                <th>Teknologi yang Digunakan</th>
+            </tr>
+            <tr>
+                <td><strong>Frontend</strong></td>
+                <td>HTML5, CSS3, JavaScript</td>
+            </tr>
+            <tr>
+                <td><strong>Styling Framework</strong></td>
+                <td>Bootstrap / Tailwind CSS</td>
+            </tr>
+            <tr>
+                <td><strong>Backend</strong></td>
+                <td>PHP atau Node.js</td>
+            </tr>
+            <tr>
+                <td><strong>Database</strong></td>
+                <td>MySQL</td>
+            </tr>
+            <tr>
+                <td><strong>Server Lokal</strong></td>
+                <td>XAMPP</td>
+            </tr>
+            <tr>
+                <td><strong>Animasi / Efek</strong></td>
+                <td>Lottie.js, Animate.css</td>
+            </tr>
+            <tr>
+                <td><strong>Versi Lanjutan (opsional)</strong></td>
+                <td>Integrasi API Chatbot Qur'an menggunakan Node.js</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h2>6. 🧱 <strong>System Architecture Overview</strong></h2>
+        <p><strong>Frontend (Client Side)</strong><br>
+        ⬇️<br>
+        <strong>Backend (Server: PHP/Node.js)</strong><br>
+        ⬇️<br>
+        <strong>Database (MySQL)</strong></p>
+
+        <p><strong>Proses kerja:</strong></p>
+        <ol>
+            <li>Pengguna menulis pertanyaan →</li>
+            <li>Server menerima pertanyaan →</li>
+            <li>Mencocokkan dengan kata kunci di tabel MySQL →</li>
+            <li>Mengirim jawaban + ayat + link video →</li>
+            <li>Browser menampilkan hasil di halaman lembar jawaban.</li>
+        </ol>
+
+        <hr>
+
+        <h2>7. 🗂️ <strong>Folder Structure</strong></h2>
+        <pre>
+ScienceQuranIntegration/
+│
+├── index.html              → Halaman animasi pembuka
+├── opening.html            → Halaman pembuka utama
+├── question.html           → Halaman form pertanyaan
+├── answer.html             → Halaman hasil jawaban
+│
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   ├── main.js
+│   │   ├── question.js
+│   │   └── answer.js
+│   ├── images/
+│   └── animations/
+│
+├── server/
+│   ├── db_config.php       → Koneksi database MySQL
+│   ├── getAnswer.php       → Script ambil data jawaban
+│   └── app.js              → (opsional) versi Node.js
+│
+└── database/
+    └── science_quran.sql   → Struktur tabel & data awal
+        </pre>
+
+        <hr>
+
+        <h2>8. 🧩 <strong>Database Design</strong></h2>
+        <p><strong>Database:</strong> <code>science_quran</code></p>
+        <p><strong>Table:</strong> <code>answers</code></p>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Keterangan</th>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td>INT(11) AUTO_INCREMENT</td>
+                <td>Primary Key</td>
+            </tr>
+            <tr>
+                <td>question_keywords</td>
+                <td>VARCHAR(255)</td>
+                <td>Kata kunci dari pertanyaan pengguna</td>
+            </tr>
+            <tr>
+                <td>answer_text</td>
+                <td>TEXT</td>
+                <td>Jawaban ilmiah + penjelasan ayat</td>
+            </tr>
+            <tr>
+                <td>quran_reference</td>
+                <td>VARCHAR(255)</td>
+                <td>Sumber ayat (contoh: QS. Al-Mu'minun:12-14)</td>
+            </tr>
+            <tr>
+                <td>youtube_link</td>
+                <td>VARCHAR(255)</td>
+                <td>Tautan video penjelasan</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h2>9. 🧭 <strong>User Flow (Alur Pengguna)</strong></h2>
+        <pre>
+[ Animasi Pembuka ]
+        ↓
+[ Opening Page ]
+   (Tombol "Mulai Eksplorasi")
+        ↓
+[ Form Pertanyaan ]
+   (User mengetik pertanyaan)
+        ↓
+[ Server mencari jawaban ]
+        ↓
+[ Halaman Jawaban ]
+   (Menampilkan penjelasan + ayat + video)
+        ↓
+[ Kembali ke Form Pertanyaan ]
+        </pre>
+
+        <hr>
+
+        <h2>10. 🎨 <strong>UI/UX Design Guidelines</strong></h2>
+        <table>
+            <tr>
+                <th>Elemen</th>
+                <th>Desain yang Direkomendasikan</th>
+            </tr>
+            <tr>
+                <td><strong>Warna Tema</strong></td>
+                <td>Biru tua (#001f3f), Emas (#f1c40f), Putih</td>
+            </tr>
+            <tr>
+                <td><strong>Font</strong></td>
+                <td>Poppins / Nunito</td>
+            </tr>
+            <tr>
+                <td><strong>Ikon</strong></td>
+                <td>Font Awesome</td>
+            </tr>
+            <tr>
+                <td><strong>Layout</strong></td>
+                <td>Responsif, minimalis, bernuansa islami</td>
+            </tr>
+            <tr>
+                <td><strong>Gaya Animasi</strong></td>
+                <td>Smooth fade-in/out, tidak mencolok</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h2>11. 🧰 <strong>Functional Requirements</strong></h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Kebutuhan</th>
+                <th>Penjelasan</th>
+            </tr>
+            <tr>
+                <td>FR-01</td>
+                <td>Sistem dapat menerima input pertanyaan pengguna</td>
+                <td>Form teks sederhana</td>
+            </tr>
+            <tr>
+                <td>FR-02</td>
+                <td>Sistem dapat mencocokkan kata kunci di database</td>
+                <td>Fungsi PHP/Node.js</td>
+            </tr>
+            <tr>
+                <td>FR-03</td>
+                <td>Sistem menampilkan jawaban dan ayat Qur'an</td>
+                <td>Menarik data dari MySQL</td>
+            </tr>
+            <tr>
+                <td>FR-04</td>
+                <td>Sistem menampilkan video/link YouTube</td>
+                <td>Menyematkan tautan di hasil</td>
+            </tr>
+            <tr>
+                <td>FR-05</td>
+                <td>Website berjalan di perangkat HP dan laptop</td>
+                <td>Responsif dengan Bootstrap</td>
+            </tr>
+            <tr>
+                <td>FR-06</td>
+                <td>Menampilkan animasi pembuka</td>
+                <td>CSS/Lottie animasi ringan</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h2>12. 🧪 <strong>Non-Functional Requirements</strong></h2>
+        <table>
+            <tr>
+                <th>Jenis</th>
+                <th>Deskripsi</th>
+            </tr>
+            <tr>
+                <td><strong>Performance</strong></td>
+                <td>Loading cepat, animasi < 5 detik</td>
+            </tr>
+            <tr>
+                <td><strong>Scalability</strong></td>
+                <td>Dapat ditambah data pertanyaan tanpa ubah kode besar</td>
+            </tr>
+            <tr>
+                <td><strong>Usability</strong></td>
+                <td>Antarmuka mudah digunakan siswa/guru</td>
+            </tr>
+            <tr>
+                <td><strong>Maintainability</strong></td>
+                <td>Kode terpisah (HTML, CSS, JS, PHP) mudah dirawat</td>
+            </tr>
+            <tr>
+                <td><strong>Compatibility</strong></td>
+                <td>Bisa diakses lewat browser Chrome, Edge, Safari</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h2>13. 🔮 <strong>Future Enhancements (Rencana Pengembangan Lanjut)</strong></h2>
+        <ol>
+            <li>Chatbot AI untuk menjawab pertanyaan otomatis (Node.js + NLP).</li>
+            <li>Sistem login pengguna dan riwayat pertanyaan.</li>
+            <li>Tambahan fitur "Fakta Sains Harian".</li>
+            <li>Mode malam (dark mode).</li>
+            <li>API integrasi tafsir Al-Qur'an otomatis.</li>
+        </ol>
+
+        <hr>
+
+        <h2>14. 📅 <strong>Timeline Pembangunan (Saran)</strong></h2>
+        <table>
+            <tr>
+                <th>Tahap</th>
+                <th>Deskripsi</th>
+                <th>Estimasi Waktu</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Desain tampilan (HTML + CSS)</td>
+                <td>3 hari</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Tambahkan logika navigasi (JS)</td>
+                <td>2 hari</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Buat database dan koneksi (PHP + MySQL)</td>
+                <td>3 hari</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Integrasi halaman tanya-jawab</td>
+                <td>2 hari</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Uji coba dan perbaikan tampilan</td>
+                <td>2 hari</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Dokumentasi & presentasi lomba</td>
+                <td>1–2 hari</td>
+            </tr>
+        </table>
+        <p><strong>Total:</strong> <em>12 hari kerja efektif</em> (bisa disesuaikan).</p>
+
+        <hr>
+
+        <h2>15. 🏁 <strong>Expected Outcome</strong></h2>
+        <p>Website edukatif berbasis Qur'an dan sains yang:</p>
+        <ul>
+            <li>Dapat diakses melalui browser HP/laptop.</li>
+            <li>Menjawab pertanyaan pengguna dengan ayat dan sains modern.</li>
+            <li>Menyediakan link YouTube relevan.</li>
+            <li>Memiliki tampilan sederhana, interaktif, dan bernilai dakwah.</li>
+        </ul>
+
+        <hr>
+
+        <h2>16. 🎯 <strong>Success Metrics</strong></h2>
+        <table>
+            <tr>
+                <th>Kriteria</th>
+                <th>Indikator</th>
+            </tr>
+            <tr>
+                <td><strong>Penggunaan</strong></td>
+                <td>Jumlah pengguna aktif harian</td>
+            </tr>
+            <tr>
+                <td><strong>Kepuasan Pengguna</strong></td>
+                <td>Tingkat kepuasan ≥ 80% berdasarkan survei</td>
+            </tr>
+            <tr>
+                <td><strong>Keberhasilan Fitur</strong></td>
+                <td>Persentase pertanyaan yang berhasil dijawab</td>
+            </tr>
+            <tr>
+                <td><strong>Kinerja Website</strong></td>
+                <td>Load time < 3 detik</td>
+            </tr>
+            <tr>
+                <td><strong>Cakupan Konten</strong></td>
+                <td>Jumlah pasangan pertanyaan-jawaban ≥ 100</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h2>17. ⚠️ <strong>Risk Analysis</strong></h2>
+        <table>
+            <tr>
+                <th>Risiko</th>
+                <th>Dampak</th>
+                <th>Strategi Mitigasi</th>
+            </tr>
+            <tr>
+                <td><strong>Data tidak lengkap</strong></td>
+                <td>Jawaban tidak ditemukan untuk beberapa pertanyaan</td>
+                <td>Terus perbarui database dengan konten berkualitas</td>
+            </tr>
+            <tr>
+                <td><strong>Kinerja lambat</strong></td>
+                <td>Pengalaman pengguna buruk</td>
+                <td>Optimalkan query database dan kompresi file</td>
+            </tr>
+            <tr>
+                <td><strong>Kompatibilitas browser</strong></td>
+                <td>Tampilan rusak di beberapa perangkat</td>
+                <td>Uji coba di berbagai browser dan ukuran layar</td>
+            </tr>
+            <tr>
+                <td><strong>Keamanan website</strong></td>
+                <td>Data website terancam</td>
+                <td>Gunakan validasi input dan sanitasi data</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <div class="footer">
+            <p>Document prepared for Science-Qur'an Integration Project<br>
+            Created by: Tim MA Unggul Sabira<br>
+            Date: Oktober 2025</p>
+        </div>
+    </div>
+</body>
+</html>

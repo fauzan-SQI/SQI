@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jawaban - Science-Qur'an Integration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .tafsir-section {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .tafsir-section h3 {
+            color: #d35400;
+            margin-top: 0;
+        }
+        
+        .tafsir-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #f39c12;
+        }
+        
+        .tafsir-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .tafsir-source {
+            font-weight: 500;
+            color: #d35400;
+            margin-bottom: 5px;
+        }
+        
+        .tafsir-text {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        .ayah-reference {
+            font-weight: 500;
+            color: #f1c40f;
+            text-align: right;
+            font-style: italic;
+        }
+        
+        .video-link-container {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .video-link-container {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .video-link {
+            display: inline-block;
+            background: #ff0000;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px 0;
+        }
+        
+        .video-link:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .video-link i {
+            margin-right: 8px;
+        }
+        
+        .video-note {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .video-note {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .loading-spinner {
+            font-size: 2rem;
+            animation: spin 1s linear infinite;
+            margin: 20px 0;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="answer-container">
+        <div class="header">
+            <h1><i class="fas fa-book-quran"></i> Science-Qur'an Integration</h1>
+        </div>
+        
+        <div class="content">
+            <div class="answer-box">
+                <h2>Jawaban untuk Pertanyaanmu</h2>
+                
+                <div class="question-display">
+                    <h3><i class="fas fa-question-circle"></i> Pertanyaan:</h3>
+                    <p id="displayed-question">Contoh: Apa yang dikatakan Al-Qur'an tentang penciptaan alam semesta?</p>
+                </div>
+                
+                <div class="answer-content">
+                    <h3><i class="fas fa-lightbulb"></i> Jawaban AI:</h3>
+                    <div id="scientific-answer" class="ai-response">
+                        Penjelasan ilmiah tentang fenomena yang ditanyakan akan ditampilkan di sini berdasarkan pengetahuan sains modern dan ayat-ayat Al-Qur'an yang relevan.
+                    </div>
+                    
+                    <h3><i class="fas fa-book-quran"></i> Ayat Al-Qur'an Terkait:</h3>
+                    <div class="quran-verse" id="quran-reference">
+                        <!-- Ayat akan ditampilkan di sini -->
+                        <p class="arabic">وَسَخَّرَ لَكُمُ الشَّمْسَ وَالْقَمَرَ دَآئِبَيْنِ وَسَخَّرَ لَكُمُ اللَّيْلَ وَالنَّهَارَ</p>
+                        <p class="translation">Dan Dia menundukkan untukmu matahari dan bulan yang terus-menerus (beredar), dan Dia menundukkan untukmu malam dan siang.</p>
+                        <p class="reference">QS. Ibrahim: 33</p>
+                    </div>
+                    
+                    <div id="tafsir-section" class="tafsir-section" style="display: none;">
+                        <h3><i class="fas fa-feather-alt"></i> Tafsir Terkait</h3>
+                        <div id="tafsir-content">
+                            <!-- Tafsir akan ditampilkan di sini -->
+                        </div>
+                    </div>
+                    
+                    <h3><i class="fas fa-video"></i> Video Penjelasan:</h3>
+                    <div class="video-container" id="video-container">
+                        <div class="loading-spinner">↻</div>
+                        <p>Memuat referensi video...</p>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn-secondary" onclick="backToQuestion()">
+                        <i class="fas fa-arrow-left"></i> Ajukan Pertanyaan Lagi
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Tim MA Unggul Sabira &copy; 2025</p>
+        </footer>
+    </div>
+
+    <script src="assets/js/answer.js"></script>
+</body>
+</html>

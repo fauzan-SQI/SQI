@@ -1,0 +1,42 @@
+{
+  "name": "science-quran-integration",
+  "version": "2.0.0",
+  "description": "Aplikasi web edukatif berbasis AI yang menghubungkan pengetahuan sains modern dengan ayat-ayat Al-Qur'an",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "science",
+    "quran",
+    "islam",
+    "education",
+    "ai",
+    "integration"
+  ],
+  "author": "Tim MA Unggul Sabira",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/science-quran-integration.git"
+  },
+  "bugs": {
+    "url": "https://github.com/username/science-quran-integration/issues"
+  },
+  "homepage": "https://github.com/username/science-quran-integration#readme"
+}
