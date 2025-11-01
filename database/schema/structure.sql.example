@@ -1,0 +1,114 @@
+-- database/schema/structure.sql.example
+-- Salin atau ubah nama berkas ini menjadi structure.sql untuk dieksekusi di server basis data Anda.
+-- Skema dirancang agar selaras dengan kebutuhan fitur pada PRD dan implementasi backend v2.x.
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(120) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS login_history (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
+    ip_address VARCHAR(64) DEFAULT NULL,
+    user_agent VARCHAR(512) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_login_history_user (user_id),
+    CONSTRAINT fk_login_history_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS answers (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    question_keywords VARCHAR(255) NOT NULL,
+    answer_text TEXT NOT NULL,
+    quran_reference VARCHAR(255) DEFAULT NULL,
+    youtube_link VARCHAR(255) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    FULLTEXT KEY ft_answers_keywords (question_keywords, answer_text)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS daily_facts (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    fact_text TEXT NOT NULL,
+    quran_reference VARCHAR(255) DEFAULT NULL,
+    created_at DATE NOT NULL,
+    is_active TINYINT(1) NOT NULL DEFAULT 1,
+    INDEX idx_daily_facts_date (created_at),
+    INDEX idx_daily_facts_active (is_active)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS videos (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    keyword VARCHAR(120) NOT NULL,
+    title VARCHAR(200) NOT NULL,
+    youtube_url VARCHAR(255) NOT NULL,
+    description TEXT DEFAULT NULL,
+    is_verified TINYINT(1) NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    FULLTEXT KEY ft_videos_keyword (keyword, title, description)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS question_logs (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED DEFAULT NULL,
+    user_question TEXT NOT NULL,
+    ai_response MEDIUMTEXT DEFAULT NULL,
+    matched_keyword VARCHAR(255) DEFAULT NULL,
+    matched_video_url VARCHAR(255) DEFAULT NULL,
+    tafsir_data JSON DEFAULT NULL,
+    ip_address VARCHAR(64) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_question_logs_user (user_id),
+    CONSTRAINT fk_question_logs_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS user_questions (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
+    question TEXT NOT NULL,
+    answer MEDIUMTEXT DEFAULT NULL,
+    quran_reference VARCHAR(255) DEFAULT NULL,
+    video_url VARCHAR(255) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_user_questions_user (user_id),
+    CONSTRAINT fk_user_questions_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS user_bookmarks (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
+    question_id BIGINT UNSIGNED NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_user_bookmarks (user_id, question_id),
+    CONSTRAINT fk_user_bookmarks_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    CONSTRAINT fk_user_bookmarks_question FOREIGN KEY (question_id) REFERENCES user_questions(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS api_keys (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    provider VARCHAR(80) DEFAULT 'google-gemini',
+    api_key VARCHAR(200) NOT NULL,
+    is_active TINYINT(1) NOT NULL DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS system_instructions (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    instruction_text MEDIUMTEXT NOT NULL,
+    version_label VARCHAR(40) DEFAULT NULL,
+    is_active TINYINT(1) NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+SET FOREIGN_KEY_CHECKS = 1;

@@ -1,7 +1,7 @@
 <?php
 // api_test.php - Halaman untuk menguji endpoint API
 
-require_once 'server/config.php';
+require_once 'server/bootstrap.php';
 
 function testApiEndpoint($url, $method = 'GET', $data = null) {
     $ch = curl_init();

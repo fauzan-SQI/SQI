@@ -47,39 +47,37 @@ function convertToWatchUrl($url) {
 }
 
 // Fungsi untuk mendapatkan video fallback yang valid
-function getFallbackVideo($videoUrl = '', $category = 'general') {
-    // Validasi URL YouTube dan konversi ke format yang sesuai
-    if (!empty($videoUrl) && isValidYouTubeUrl($videoUrl)) {
-        return convertToEmbedUrl($videoUrl);
+function getFallbackVideo($primaryUrl = '', $category = 'general', $format = 'embed') {
+    $validatedUrl = '';
+    
+    if (!empty($primaryUrl) && isValidYouTubeUrl($primaryUrl)) {
+        $validatedUrl = convertToEmbedUrl($primaryUrl);
     }
     
-    // Jika URL tidak valid, gunakan video fallback sesuai kategori
-    switch ($category) {
-        case 'science':
-            return DEFAULT_SCIENCE_VIDEO;
-        case 'creation':
-            return DEFAULT_CREATION_VIDEO;
-        case 'general':
-        default:
-            return DEFAULT_GENERAL_VIDEO;
+    if (empty($validatedUrl)) {
+        switch ($category) {
+            case 'science':
+                $validatedUrl = DEFAULT_SCIENCE_VIDEO;
+                break;
+            case 'creation':
+                $validatedUrl = DEFAULT_CREATION_VIDEO;
+                break;
+            case 'general':
+            default:
+                $validatedUrl = DEFAULT_GENERAL_VIDEO;
+                break;
+        }
     }
+    
+    if ($format === 'watch') {
+        return convertToWatchUrl($validatedUrl);
+    }
+    
+    return $validatedUrl;
 }
 
-// Fungsi untuk mendapatkan video cadangan jika video utama tidak valid
-function getFallbackVideo($primaryUrl, $category = 'general') {
-    if ($primaryUrl && isValidYouTubeUrl($primaryUrl)) {
-        return convertToEmbedUrl($primaryUrl);
-    }
-    
-    // Gunakan video default berdasarkan kategori
-    switch ($category) {
-        case 'science':
-            return DEFAULT_SCIENCE_VIDEO;
-        case 'creation':
-            return DEFAULT_CREATION_VIDEO;
-        default:
-            return DEFAULT_GENERAL_VIDEO;
-    }
+function getFallbackVideoWatchUrl($primaryUrl = '', $category = 'general') {
+    return getFallbackVideo($primaryUrl, $category, 'watch');
 }
 
 // Daftar video cadangan yang diketahui valid

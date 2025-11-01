@@ -110,24 +110,33 @@ if (!isset($commonResponses)) {
 }
 
 // Include required classes - hanya jika belum diinclude
-if (!class_exists('AIHandler')) {
-    if (file_exists(__DIR__ . '/server/ai_handler.php')) {
-        require_once __DIR__ . '/server/ai_handler.php';
-    }
+$__sqiSkipAutoload = false;
+if (defined('SQI_SKIP_AUTOLOAD') && SQI_SKIP_AUTOLOAD) {
+    $__sqiSkipAutoload = true;
 }
-if (!class_exists('KeywordMatcher')) {
-    if (file_exists(__DIR__ . '/server/keyword_matcher.php')) {
-        require_once __DIR__ . '/server/keyword_matcher.php';
-    }
+if (isset($GLOBALS['SQI_SKIP_AUTOLOAD']) && $GLOBALS['SQI_SKIP_AUTOLOAD']) {
+    $__sqiSkipAutoload = true;
 }
-if (!class_exists('LogManager')) {
-    if (file_exists(__DIR__ . '/server/log_manager.php')) {
-        require_once __DIR__ . '/server/log_manager.php';
+if (!$__sqiSkipAutoload) {
+    if (!class_exists('AIHandler')) {
+        if (file_exists(__DIR__ . '/server/ai_handler.php')) {
+            require_once __DIR__ . '/server/ai_handler.php';
+        }
     }
-}
-if (!class_exists('TafsirService')) {
-    if (file_exists(__DIR__ . '/server/tafsir_service.php')) {
-        require_once __DIR__ . '/server/tafsir_service.php';
+    if (!class_exists('KeywordMatcher')) {
+        if (file_exists(__DIR__ . '/server/keyword_matcher.php')) {
+            require_once __DIR__ . '/server/keyword_matcher.php';
+        }
+    }
+    if (!class_exists('LogManager')) {
+        if (file_exists(__DIR__ . '/server/log_manager.php')) {
+            require_once __DIR__ . '/server/log_manager.php';
+        }
+    }
+    if (!class_exists('TafsirService')) {
+        if (file_exists(__DIR__ . '/server/tafsir_service.php')) {
+            require_once __DIR__ . '/server/tafsir_service.php';
+        }
     }
 }
 

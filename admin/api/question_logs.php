@@ -2,7 +2,7 @@
 // admin/api/question_logs.php - API endpoint for managing question logs
 
 require_once '../admin_check.php';
-require_once '../../server/config.php';
+require_once '../../server/bootstrap.php';
 
 header('Content-Type: application/json');
 

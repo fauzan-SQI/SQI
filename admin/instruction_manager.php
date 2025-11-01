@@ -1,7 +1,7 @@
 <?php
 // instruction_manager.php - System instruction management for admin panel
 
-require_once '../server/config.php';
+require_once '../server/bootstrap.php';
 require_once 'admin_auth.php';
 
 class InstructionManager {

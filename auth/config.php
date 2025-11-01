@@ -43,7 +43,7 @@ if (!function_exists('getConnection')) {
 
 // Include fungsi-fungsi tambahan hanya jika belum didefinisikan
 if (!function_exists('sanitizeInput')) {
-    require_once __DIR__ . '/../server/config.php';
+    require_once __DIR__ . '/../server/bootstrap.php';
 }
 
 // Fungsi untuk hash password

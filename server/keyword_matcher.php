@@ -1,7 +1,7 @@
 <?php
 // keyword_matcher.php - Matches user questions with relevant videos
 
-require_once 'config.php';
+require_once __DIR__ . '/bootstrap.php';
 
 class KeywordMatcher {
     public function findRelevantVideos($userQuestion) {

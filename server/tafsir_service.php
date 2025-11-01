@@ -1,7 +1,7 @@
 <?php
 // server/tafsir_service.php - Service untuk mengambil tafsir Al-Qur'an
 
-require_once 'config.php';
+require_once __DIR__ . '/bootstrap.php';
 
 class TafsirService {
     private $conn;

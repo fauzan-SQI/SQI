@@ -1,7 +1,7 @@
 <?php
 // server/log_manager.php - Pengelolaan log untuk Science-Qur'an Integration
 
-require_once 'config.php';
+require_once __DIR__ . '/bootstrap.php';
 
 class LogManager {
     private $conn;

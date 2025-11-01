@@ -2,7 +2,7 @@
 // admin/api/videos.php - API endpoint for managing videos
 
 require_once '../admin_check.php';
-require_once '../../server/config.php';
+require_once '../../server/bootstrap.php';
 require_once '../../server/video_config.php'; // Include video validation functions
 
 header('Content-Type: application/json');

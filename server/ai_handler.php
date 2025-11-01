@@ -1,7 +1,7 @@
 <?php
 // ai_handler.php - Handles requests to the AI API (e.g., Gemini)
 
-require_once 'config.php';
+require_once __DIR__ . '/bootstrap.php';
 require_once 'tafsir_service.php';
 
 class AIHandler {

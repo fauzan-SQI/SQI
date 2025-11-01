@@ -6,7 +6,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Content-Type");
 
-require_once 'config.php';
+require_once __DIR__ . '/bootstrap.php';
 require_once 'tafsir_service.php';
 require_once 'video_config.php';
 

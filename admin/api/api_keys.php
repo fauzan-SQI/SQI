@@ -2,7 +2,7 @@
 // admin/api/api_keys.php - API endpoint for managing API keys
 
 require_once '../admin_check.php';
-require_once '../../server/config.php';
+require_once '../../server/bootstrap.php';
 
 header('Content-Type: application/json');
 
