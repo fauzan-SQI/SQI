@@ -95,14 +95,14 @@ function displayAnswerData(data) {
         if (parts.length > 1) {
             // If we have both reference and text
             quranRefDiv.innerHTML = `
-                <p class="arabic">${escapeHtml(parts.slice(1).join(' - '))}</p>
+                <p class="arabic">???? ??????? ???????? ???? ?????????? ????? ?????? ??????? ??????? ???????? ?????? ????? ??????????</p>
                 <p class="translation">Terjemahan ayat akan ditampilkan di sini.</p>
                 <p class="reference">${escapeHtml(parts[0])}</p>
             `;
         } else {
             // If only one part, display as reference
             quranRefDiv.innerHTML = `
-                <p class="arabic">${escapeHtml(quranReference)}</p>
+                <p class="arabic">???? ??????? ???????? ???? ?????????? ????? ?????? ??????? ??????? ???????? ?????? ????? ??????????</p>
                 <p class="translation">Terjemahan ayat akan ditampilkan di sini.</p>
                 <p class="reference">Referensi ayat</p>
             `;
@@ -192,6 +192,46 @@ function sanitizeInput(input) {
     return div.innerHTML;
 }
 
+function formatResponseText(text) {
+    if (typeof text !== 'string' || text.trim() === '') {
+        return '<p>Penjelasan ilmiah akan ditampilkan di sini.</p>';
+    }
+
+    const paragraphs = text.split(/\n{2,}/).map(segment => {
+        let formattedSegment = segment
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.+?)\*/g, '<em>$1</em>')
+            .replace(/`(.+?)`/g, '<code>$1</code>')
+            .replace(/~~(.+?)~~/g, '<del>$1</del>');
+
+        formattedSegment = formattedSegment.replace(/\n/g, '<br>');
+        return `<p>${formattedSegment}</p>`;
+    });
+
+    return paragraphs.join('') || `<p>${text}</p>`;
+}
+
+function extractQuranReference(rawText) {
+    if (typeof rawText !== 'string') {
+        return '';
+    }
+
+    const referenceRegex = /(QS\.?\s*[A-Za-z0-9'()\-\s]+:\s*\d+(?:-\d+)?)/i;
+    const match = rawText.match(referenceRegex);
+
+    if (!match) {
+        return '';
+    }
+
+    const referenceText = escapeHtml(match[1]);
+
+    return `
+        <p class="arabic">Teks Arab ayat akan ditampilkan ketika tersedia.</p>
+        <p class="translation">Silakan merujuk pada mushaf atau database Al-Qur'an untuk teks dan terjemahan lengkap.</p>
+        <p class="reference">${referenceText}</p>
+    `;
+}
+
 function displayDefaultAnswer(question) {
     // Sanitize the question to prevent XSS
     question = sanitizeInput(question);
@@ -203,8 +243,8 @@ function displayDefaultAnswer(question) {
     // Update Quran verse
     const quranRefDiv = document.getElementById('quran-reference');
     quranRefDiv.innerHTML = `
-        <p class="arabic">هُوَ الَّذِي أَنزَلَ مِنَ السَّمَاءِ مَاءً لَّكُم مِّنْهُ شَرَابٌ وَمِنْهُ شَجَرٌ فِيهِ تَسِيمُونَ</p>
-        <p class="translation">Dialah yang menurunkan air dari langit, yang sebagiannya untuk minum dan sebagiannya untuk pohon-pohon, yang padanya kamu menggembalakan ternakmu.</p>
+        <p class="arabic">???? ??????? ???????? ???? ?????????? ????? ?????? ??????? ??????? ???????? ?????? ????? ??????????</p>
+        <p class="translation">Dialah yang menurunkan air dari langit; sebagian menjadi minuman untukmu dan sebagian lagi menyirami tumbuhan yang menjadi tempat kalian menggembalakan ternak.</p>
         <p class="reference">QS. An-Nahl: 10</p>
     `;
     
@@ -215,7 +255,7 @@ function displayDefaultAnswer(question) {
             <p><i class="fas fa-video"></i> <strong>Video Penjelasan:</strong></p>
             <p>Video penjelasan tambahan akan ditampilkan di sini ketika backend tersedia.</p>
             <p>Sedang mencoba menghubungkan ke backend...</p>
-            <div class="loading-spinner">↻</div>
+            <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></div>
         </div>
     `;
     
@@ -267,4 +307,6 @@ function displayTafsir(tafsirData) {
 function backToQuestion() {
     window.location.href = 'question.html';
 }
+
+document.addEventListener('DOMContentLoaded', displayAnswer);
 
